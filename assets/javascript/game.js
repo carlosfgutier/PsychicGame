@@ -6,70 +6,59 @@ var wins = 0;
 var losses = 0;
 var guessesLeft = 9;
 var guessesMade = [];
-var PCpick = null;
+var PCpick;
 
 
-//Coputer chooses one letter from the avaliable choices.
-// var computerGuess = options[Math.floor(Math.random() * options.length)];
+//Coputer chooses one letter from the avaliable choices
 var index = Math.floor(Math.random() * options.length);
 var PCpick = options[index];
 console.log(PCpick);
 
-
-// //Player begins with 9 lives.
-// function guessesRemaining() {
-// 	document.querySelector('#guessesLeft').innerHTML = "Guesses left: " + guessesLeft;
-// };
-
-document.getElementById("wins").textContent = "Wins: " + wins;
-
-document.getElementById("losses").textContent = "Losses " + losses;
-
-document.getElementById("guessesLeft").textContent = "Guesses left: " + guessesLeft;
-
-document.getElementById("haveSaid").textContent = "Your guesses so far: " + guessesMade;
-
-//Attempted letter gets display
-function lettersPicked() {
-	document.getElementById("haveSaid").textContent = "Your guesses so far: " + guessedLetters.join(" ");
-};
-
-//This function will be called to reset the game
+//when activated this function will reset game
 function reset() {
-	if ((guessesLeft < 1) ||  {
-
-	}
 	guessesLeft = 9;
 	guessesMade = [];
-
-	chosenLetter();
-	guessesRemaining();
-	lettersSaid();
+	index = Math.floor(Math.random() * options.length);
+	PCpick = options[index];
+	console.log(guessesMade);
+	console.log(PCpick);
 }
-	chosenLetter();
-	guessesRemaining();
 
-//this function will take place after the player lets go of a key
 document.onkeyup = function(event) {
-	//-- means decrement
-	guessesLeft--;
-	var playerGuess = String.fromCharCode(event.keyCode).toLowerCase();
+	var lowerCaseLetter = event.key.toLowerCase();
 
-	guessesMade.push(playerGuess);
-	guessesRemaining();
-	lettersSaid();
 
-		if (guessesLeft > 0) {
-			if (playerGuess == PCpick) {
-				wins++;
-				document.querySelector('#wins').innerHTML = "Wins: " + wins;
-				alert("Cool, you're a psychic");
-				reset();
-			}
-		} else if (guessesLeft == 0) {
-			losses++;
-			document.querySelector('#losses').innerHTML = "Losses: " + losses;
-			alert("You're probably not psychic, but feel free to try again");
+	//If key pressed has not been pressed, let conditional run. If key pressed has been pressed, do nothing.
+	if (guessesMade.indexOf(lowerCaseLetter) < 0){
+
+		//if player guesses PCpick, player wins and game restarts
+		if (lowerCaseLetter === PCpick) {	
+			wins++;
+			alert("Cool, you're a psychic");
 			reset();
+			console.log(wins);
 		}
-};
+		//if player guesses wrong and has not guesses left, player loses and game restarts
+		else {
+			guessesLeft--;
+			if (guessesLeft === 0) {
+				losses++;
+				reset();
+				alert("You're probably not psychic, but feel free to try again");
+			}
+			//if player guesses wrong and still has guesses left, player's guesses left drop by one and letter is documented
+			else{
+				guessesLeft - 1;
+				guessesMade.push(lowerCaseLetter);
+			}
+		}
+	}
+	document.getElementById("wins").textContent = "Wins: " + wins;
+
+	document.getElementById("losses").textContent = "Losses " + losses;
+
+	document.getElementById("guessesLeft").textContent = "Guesses left: " + guessesLeft;
+
+	document.getElementById("haveSaid").textContent = "Your guesses so far: " + guessesMade;
+
+}
