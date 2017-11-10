@@ -11,16 +11,6 @@ p {font-family: 'Spectral SC', serif;
 body {background-color: black;
 }
 
-footer {color: white;
-	font-size: 12px;
-	position: fixed;
-    bottom: 0;
-    right: 0;
-    width: 100%;
-    text-align: center;
-    padding-bottom: 5px;
-}
-
 div {
 	background-color: black;
 	text-align: center;
@@ -32,6 +22,21 @@ div {
 section {background-color: black;
 	text-align: center;
 	line-height: 20px;
-	padding: 120px 300px 0 300px;
 	font-size: 13px;
+	max-width: 380px;
+	margin: 0 40%;
+	padding: 120px 0px 35px 0px;
+}
+
+footer {color: white;
+	font-size: 10px;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    text-align: center;
+    padding-bottom: 5px;
+}
+
+a {color: white;
+
 }

@@ -14,31 +14,31 @@ var index = Math.floor(Math.random() * options.length);
 var PCpick = options[index];
 console.log(PCpick);
 
-//when activated this function will reset game
+//when activated this function will reset the game
 function reset() {
 	guessesLeft = 9;
 	guessesMade = [];
 	index = Math.floor(Math.random() * options.length);
 	PCpick = options[index];
-	console.log(guessesMade);
-	console.log(PCpick);
 }
 
+//this funciton runs when player presses a key
 document.onkeyup = function(event) {
+	//key pressed is lowercased and becomes a variable
 	var lowerCaseLetter = event.key.toLowerCase();
 
 
 	//If key pressed has not been pressed, let conditional run. If key pressed has been pressed, do nothing.
-	if (guessesMade.indexOf(lowerCaseLetter) < 0){
+	if (guessesMade.indexOf(lowerCaseLetter) < 0 && event.keyCode > 65 && event.keyCode < 90){
 
 		//if player guesses PCpick, player wins and game restarts
 		if (lowerCaseLetter === PCpick) {	
 			wins++;
-			alert("Cool, you're a psychic");
+			alert("I guess you are a psychic");
 			reset();
-			console.log(wins);
 		}
-		//if player guesses wrong and has not guesses left, player loses and game restarts
+
+		//if player guesses wrong and has no guesses left, player loses and game restarts
 		else {
 			guessesLeft--;
 			if (guessesLeft === 0) {
@@ -53,6 +53,7 @@ document.onkeyup = function(event) {
 			}
 		}
 	}
+	//updates game status after function runs
 	document.getElementById("wins").textContent = "Wins: " + wins;
 
 	document.getElementById("losses").textContent = "Losses " + losses;
