@@ -29,7 +29,7 @@ document.onkeyup = function(event) {
 
 
 	//If key pressed has not been pressed, let conditional run. If key pressed has been pressed, do nothing.
-	if (guessesMade.indexOf(lowerCaseLetter) < 0 && event.keyCode > 65 && event.keyCode < 90){
+	if (guessesMade.indexOf(lowerCaseLetter) < 0 && event.keyCode >= 65 && event.keyCode <= 90){
 
 		//if player guesses PCpick, player wins and game restarts
 		if (lowerCaseLetter === PCpick) {	
