@@ -56,7 +56,7 @@ document.onkeyup = function(event) {
 	//updates game status after function runs
 	document.getElementById("wins").textContent = "Wins: " + wins;
 
-	document.getElementById("losses").textContent = "Losses " + losses;
+	document.getElementById("losses").textContent = "Losses: " + losses;
 
 	document.getElementById("guessesLeft").textContent = "Guesses left: " + guessesLeft;
 
